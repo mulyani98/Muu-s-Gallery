@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="Black">#000000</color>
+    <color name="White">#ffffff</color>
+    <color name="thistle">#d8bfd8</color>
+    <color name="thistle1">#ffe1ff</color>
+    <color name="thistle2">#eed2ee</color>
+    <color name="thistle3">#cdb5cd</color>
+    <color name="thistle4">#8b7b8b</color>
+
+</resources>
