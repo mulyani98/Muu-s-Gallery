@@ -46,6 +46,8 @@ public class PhotoActivity extends AppCompatActivity {
         //original
         gridView = (GridView) findViewById(R.id.gridViewFolder);
 //        position = getIntent().getIntExtra("folderName", 0);
+
+        //try again
         position = getIntent().getIntExtra("value",0);
 
 //        allImages = (ArrayList<ImagesModel>) getIntent().getSerializableExtra("gambarku", );
@@ -55,7 +57,10 @@ public class PhotoActivity extends AppCompatActivity {
 
         //asli
 //        adapter = new GridViewAdapter(this, MainActivity.filteredImages);
+
+        //try again
         adapter = new GridViewAdapter(this, MainActivity.arrayListImages, position);
+
         gridView.setAdapter(adapter);
 
 

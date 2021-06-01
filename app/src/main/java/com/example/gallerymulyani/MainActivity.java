@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent move = new Intent(getApplicationContext(), PhotoActivity.class);
+                //try again
                 move.putExtra("value", position);
 
 //                move.putExtra("gambarku", allGalleryImages);
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             Log.e("Else","Else");
 //            folderName_ImagePath();
+            //try again
             fn_imagespath();
         }
 
@@ -315,6 +317,8 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < grantResults.length; i++) {
                     if (grantResults.length > 0 && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
 //                        folderName_ImagePath();
+
+                        //try again
                         fn_imagespath();
 
                     } else {

@@ -98,8 +98,13 @@ public class GridViewAdapter extends ArrayAdapter<ImagesModel> {
             viewHolder.imageViewImages = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
 
 //            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getFirstPic());
-            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getArrayList_ImagePath().get(0));
-            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+
+            //try again
+            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getArrayList_ImagePath().get(position));
+            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 150, 150, false);
+
+            //original
+//            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
             viewHolder.imageViewImages.setImageBitmap(bitmapThumbnail);
 
             convertView.setTag(viewHolder);

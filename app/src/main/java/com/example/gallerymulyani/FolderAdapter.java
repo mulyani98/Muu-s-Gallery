@@ -86,8 +86,13 @@ import java.util.ArrayList;
 
             convertView.setTag(viewHolder);
 
-            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getArrayList_ImagePath().get(0));
-            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+//            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getFirstPic());
+            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getArrayList_ImagePath().get(position));
+            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 150, 150, false);
+
+            //original
+//            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+
             viewHolder.imageViewPhoto.setImageBitmap(bitmapThumbnail);
 
 //            Glide.with(context).load("file://" + al_menu.get(position).getAl_imagepath().get(0))

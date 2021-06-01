@@ -5,7 +5,10 @@ import java.util.ArrayList;
 public class ImagesModel {
 
     private String folderName;
+
+    //try again
     ArrayList<String> arrayList_ImagePath = new ArrayList<String>();
+
     private String stringImagePath;
     private String firstPic;
     private int numberOfPics = 0;
@@ -19,6 +22,7 @@ public class ImagesModel {
         this.folderName = stringFolder;
     }
 
+    //try again
     public ArrayList<String> getArrayList_ImagePath() {
         return arrayList_ImagePath;
     }
