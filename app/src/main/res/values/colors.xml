@@ -6,9 +6,9 @@
     <color name="Black">#000000</color>
     <color name="White">#ffffff</color>
     <color name="thistle">#d8bfd8</color>
-    <color name="thistle1">#ffe1ff</color>
-    <color name="thistle2">#eed2ee</color>
-    <color name="thistle3">#cdb5cd</color>
+    <color name="thistle1">#C0ADC0</color>
+    <color name="thistle2">#B39FB3</color>
+    <color name="thistle3">#978A97</color>
     <color name="thistle4">#8b7b8b</color>
 
 </resources>

@@ -16,14 +16,16 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //intent ke main.activity setelah menampilkan splash screen selama 2 detik
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },2000);
+        },2000); //menampilkan splash screen selama 2 detik
     }
 }

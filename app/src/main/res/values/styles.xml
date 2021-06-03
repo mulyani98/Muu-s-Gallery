@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/thistle4</item>
         <item name="colorPrimaryDark">@color/thistle3</item>
-        <item name="colorAccent">@color/thistle</item>
+        <item name="colorAccent">@color/thistle2</item>
     </style>
 
 </resources>

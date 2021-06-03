@@ -18,168 +18,87 @@ import java.util.ArrayList;
 
     public class FolderAdapter extends ArrayAdapter<ImagesModel>{
 
-    //original
     Context context;
     ViewHolder viewHolder;
     ArrayList<ImagesModel> arrayListImages = new ArrayList<>();
-    ArrayList<String> imagesPath = new ArrayList<>();
 
-//    //trial and error
-//    ArrayList<ImagesModel> folders = new ArrayList<>();
-//    Context contextFolder;
-
-
+    //object untuk menampung view yang berisi textview foldername, foldersize dan imageview folder
     private static class ViewHolder {
         TextView textView_FolderName, textView_FolderSize;
-        ImageView imageViewPhoto;
+        ImageView imageViewFolder;
     }
 
-    public FolderAdapter(Context contextFolder, ArrayList<ImagesModel> arrayListFolders){
-        //original
-        super(contextFolder, R.layout.adapter_folder, arrayListFolders);
+    //context -> merupakan interface untuk global information mengenai application environment (lingkungan aplikasi)
+    public FolderAdapter(Context context, ArrayList<ImagesModel> arrayListFolders){
+        /* super => Refers to superclass (parent) objects
+        * super sebagai default constructor
+        * disini superclassnya arrayadapter<imagesmodel> */
+        super(context, R.layout.adapter_folder, arrayListFolders);
         this.context = context;
         this.arrayListImages = arrayListFolders;
-
-        //trial and error
-////        super(contextFolder, R.layout.picture_folder_item, arrayListFolders );
-//        this.folders = arrayListFolders;
-//        this.contextFolder = contextFolder;
     }
 
-    //original
+    //untuk menghitung jumlah list yang ada di folderadapter
     @Override
     public int getCount() {
         Log.e("FOLDERADAPTER LIST SIZE", arrayListImages.size() +"");
         return arrayListImages.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
 
-    @Override
-    public int getViewTypeCount() {
-        if (arrayListImages.size() > 0){
-            return arrayListImages.size();
-        }
-        else
-            return 1;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
+    //mendapatkan/return View yang akan ditampilkan
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         if (convertView == null){
             viewHolder = new ViewHolder();
+
+            //convertView diset viewnya jadi layout adapter_folder, parentnya: gridview(?)
+            //layoutinflater => untuk masang view ke suatu activity, nempelin xml-nya
+            //layoutinflater.from => memperoleh layoutinflater dari context (disini adapter_folder)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_folder, parent, false);
 
+
+            //inisialisasi ui komponen by id di xml
             viewHolder.textView_FolderName = (TextView) convertView.findViewById(R.id.textViewFolderName);
             viewHolder.textView_FolderSize = (TextView) convertView.findViewById(R.id.textViewFolderSize);
-            viewHolder.imageViewPhoto = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
+            viewHolder.imageViewFolder = (ImageView) convertView.findViewById(R.id.coverAlbum);
 
+            /* setTag digunakan sebagai referensi ke object yang merujuk pada beberapa bagian dari view
+            * (yang ditampilkan di gridview) instead pakai findviewbyid
+            * disini converviewnya null, jadi di settag isinya viewholder*/
             convertView.setTag(viewHolder);
 
-//            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getFirstPic());
-            Bitmap bitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getArrayList_ImagePath().get(position));
-            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 150, 150, false);
 
-            //original
-//            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+            /*
+            * bitmapfactory => membuat object bitmap dari
+            * decodefile => decode pathfile ke bitmap
+            * disini bitmap dibuat dari pathPhoto yang ada di arrayListImages */
+            Bitmap mybitmap = BitmapFactory.decodeFile(arrayListImages.get(position).getPhotoPath());
 
-            viewHolder.imageViewPhoto.setImageBitmap(bitmapThumbnail);
+            /*
+            * createScaledBitmap => mengatur scalebitmap (sourcenya, width dan height-nya, sama filter-nya
+            * bitmapThumbnal => bitmap diatur scale-nya, sourcenya mybitmap, width 300, height 300, filternya false */
+            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(mybitmap, 300, 300, false);
 
-//            Glide.with(context).load("file://" + al_menu.get(position).getAl_imagepath().get(0))
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                    .skipMemoryCache(true)
-//                    .into(viewHolder.iv_image);
+            /* imageview di set imagebitmapnya, sebagai konten/isi dari imageview tersebut
+            * disini diisi bitmap yang sudah diatur scalenya, yaitu pakai bitmapThumbnail  */
+            viewHolder.imageViewFolder.setImageBitmap(bitmapThumbnail);
 
         }
         else {
+            /* kalau convertviewnya gak null, viewholder-nya sama dengan convertview
+            yang udah ada tersebut (pakai get tag)
+            disini convertview gak null, jadi viewholdernya diisi convertview yang udah ada*/
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        /*set text dari folder name dan folder size*/
         viewHolder.textView_FolderName.setText(arrayListImages.get(position).getFolderName());
-//        viewHolder.textView_FolderSize.setText(arrayListImages.get(position).getNumberOfPics() + "");
-
-//        viewHolder.textView_FolderSize.setText(arrayListImages.get(position).getStringImagePath());
-
-        //try again
-        viewHolder.textView_FolderSize.setText(arrayListImages.get(position).getArrayList_ImagePath().size()+"");
+        viewHolder.textView_FolderSize.setText(arrayListImages.get(position).getNumberOfPics()+ "");
 
         return convertView;
-
-        //second
-//        viewHolder = new ViewHolder();
-////        convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_folder, parent, false);
-//
-//        View childView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_folder, parent, false);
-//        viewHolder.textView_FolderName = (TextView) convertView.findViewById(R.id.textViewFolderName);
-//        viewHolder.textView_FolderSize = (TextView) convertView.findViewById(R.id.textViewFolderSize);
-//        viewHolder.imageViewPhoto = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
-//
-//            Bitmap bitmap = BitmapFactory.decodeFile(imagesPath.get(position));
-//            Bitmap bitmapThumbnail = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
-//
-////        convertView.setTag(viewHolder);
-//
-//        viewHolder.imageViewPhoto.setImageBitmap(bitmapThumbnail);
-
-        //second
-//        return childView;
-
     }
-
-    //trial error
-//    public class FolderHolder extends RecyclerView.ViewHolder{
-//        ImageView folderPic;
-//        TextView folderName;
-//        TextView folderSize;
-//        CardView folderCard;
-//
-//        public FolderHolder(View itemView){
-//            super(itemView);
-//            folderPic = itemView.findViewById(R.id.folderPic);
-//            folderName = itemView.findViewById(R.id.folderName);
-//            folderSize = itemView.findViewById(R.id.folderSize);
-//            folderCard = itemView.findViewById(R.id.folderCard);
-//        }
-//    }
-//
-//    public FolderHolder onCreateViewHolder(ViewGroup parent, int viewType){
-//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//        View cell = inflater.inflate(R.layout.picture_folder_item, parent, false);
-//        return new FolderHolder(cell);
-//    }
-//
-//    public void onBindViewHolder(FolderHolder holder, int position){
-//        final ImagesModel folder = folders.get(position);
-//
-//
-//        String text = ""+folder.getFolderName();
-//        String folderSizeString = ""+folder.getNumberOfPics()+" Media";
-//        holder.folderSize.setText(folderSizeString);
-//        holder.folderName.setText(text);
-//
-//        holder.folderPic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//
-//    }
-//
-//    public int getItemCount(){
-//        return folders.size();
-//    }
-
-        //tried at home
 
 }
