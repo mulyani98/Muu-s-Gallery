@@ -51,6 +51,7 @@ public class ImagesModel {
         return photoName;
     }
 
+    //digunakan untuk title action bar pas show image view
     public void setPhotoName(String photoName) {
         this.photoName = photoName;
     }

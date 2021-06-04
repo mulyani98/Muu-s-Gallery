@@ -1,17 +1,11 @@
 package com.example.gallerymulyani;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
@@ -21,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PhotoActivity extends AppCompatActivity {
 
     private GridView gridViewListPhoto;
-    GridViewAdapter gridViewAdapter;
+    ImagesAdapter imagesAdapter;
     String selectedFolder;
 
     public ArrayList<ImagesModel> filteredImages = new ArrayList<>();
@@ -46,8 +40,8 @@ public class PhotoActivity extends AppCompatActivity {
         }
 
         gridViewListPhoto = (GridView) findViewById(R.id.gridViewFolder);
-        gridViewAdapter = new GridViewAdapter(this, filteredImages);
-        gridViewListPhoto.setAdapter(gridViewAdapter);
+        imagesAdapter = new ImagesAdapter(this, filteredImages);
+        gridViewListPhoto.setAdapter(imagesAdapter);
 
         gridViewListPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

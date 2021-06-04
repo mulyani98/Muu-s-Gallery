@@ -21,15 +21,20 @@ public class ImageShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_show);
 
+        //inisialisasi imageview by id xml
         imageShow = (ImageView) findViewById(R.id.imageShow);
 
         /* getintent data imagePath yang dipass dari intent di photoActivity */
         imagePath = getIntent().getExtras().getString("String Image Path", null);
 
-        /* kalau actionbar tidak sama dengan null
-        * kalau supportactionbar ada */
+        /* kalau supportactionbar tidak sama dengan null
+        * kalau actionbar-nya ada */
         if (getSupportActionBar() != null) {
             ActionBar backButton = getSupportActionBar();
+
+            /*
+            * setDisplayHomeAsUpEnabled, kalau true berarti kembali ke halaman sebelumnya (prev activity) (satu level sebelumnya)
+            * kalau false kembali ke top level (halaman awal app) */
             backButton.setDisplayHomeAsUpEnabled(true);
 
             /* file = representasi abstrak dari file dan nama path direktori */
@@ -38,6 +43,7 @@ public class ImageShowActivity extends AppCompatActivity {
             /* getname dari File yang isinya imagePath */
             String fileName = imageFile.getName();
 
+            //set nama action bar-nya
             getSupportActionBar().setTitle(fileName);
         }
 
