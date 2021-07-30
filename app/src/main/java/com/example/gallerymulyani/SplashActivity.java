@@ -18,6 +18,7 @@ public class SplashActivity extends Activity {
 
 
         handler = new Handler();
+        //to be run after the specified amount of time elapses.
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

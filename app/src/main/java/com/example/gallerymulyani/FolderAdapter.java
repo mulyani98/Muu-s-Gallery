@@ -18,11 +18,12 @@ import java.util.ArrayList;
 
     public class FolderAdapter extends ArrayAdapter<ImagesModel>{
 
-    Context context;
+    Context myContext;
     ViewHolder viewHolder;
-    ArrayList<ImagesModel> arrayListFolder = new ArrayList<>(); //penamaan jangan sama
+    ArrayList<ImagesModel> myArrayListFolder = new ArrayList<>(); //penamaan jangan sama
 
     //object untuk menampung view yang berisi textview foldername, foldersize dan imageview folder
+    //to collect view that contains tv folder name, size and iv folder
     private class ViewHolder {
         TextView textView_FolderName, textView_FolderSize;
         ImageView imageViewFolder;
@@ -37,8 +38,8 @@ import java.util.ArrayList;
         * super sebagai default constructor
         * disini superclassnya arrayadapter<imagesmodel> */
         super(context, R.layout.adapter_folder, arrayListFolders);
-        this.context = context;
-        this.arrayListFolder = arrayListFolders; //
+        this.myContext = context;
+        this.myArrayListFolder = arrayListFolders; //
     }
 
     //mendapatkan/return View yang akan ditampilkan
@@ -48,6 +49,7 @@ import java.util.ArrayList;
 
         //kalau convertview sama dengan null
         if (convertView == null){
+            //create new ViewHolder
             viewHolder = new ViewHolder();
 
             /* convertView diset viewnya jadi layout adapter_folder, parentnya: gridview(?)
@@ -65,8 +67,8 @@ import java.util.ArrayList;
             * (yang ditampilkan di gridview) instead pakai findviewbyid
             * disini converviewnya null, jadi di settag isinya viewholder
             * Tag used to store data within a view without resorting to another data structure
-            * menyimpan data dalam tampilan
-            * menyimpan viewHolder kedalam convertView*/
+            * menyimpan data dalam tampilan  ---- tanpa menggunakan struktur data lain
+            * menyimpan viewHolder kedalam convertView */
             convertView.setTag(viewHolder);
 
 
@@ -74,7 +76,7 @@ import java.util.ArrayList;
             * bitmapfactory => membuat object bitmap dari
             * decodefile => decode pathfile ke bitmap
             * disini bitmap dibuat dari pathPhoto yang ada di arrayListFolder */
-            Bitmap mybitmap = BitmapFactory.decodeFile(arrayListFolder.get(position).getPhotoPath());
+            Bitmap mybitmap = BitmapFactory.decodeFile(myArrayListFolder.get(position).getPhotoPath());
 
             /*
             * createScaledBitmap => mengatur scalebitmap (sourcenya, width dan height-nya, sama filter-nya
@@ -95,13 +97,13 @@ import java.util.ArrayList;
         }
 
         /*set text dari folder name dan folder size*/
-        viewHolder.textView_FolderName.setText(arrayListFolder.get(position).getFolderName());
+        viewHolder.textView_FolderName.setText(myArrayListFolder.get(position).getFolderName());
 
         /* ini set text kan mintanya string, karena foldersize pakai numberofpics itu int,
         * jadi pakai stringvalueof (mengembalikan nilai menjadi string)
         * disini juga bisa pakai +" ", tetapi readability codenya tidak bagus */
 //        viewHolder.textView_FolderSize.setText(arrayListFolder.get(position).getNumberOfPics()+"");
-        viewHolder.textView_FolderSize.setText(String.valueOf(arrayListFolder.get(position).getNumberOfPics()));
+        viewHolder.textView_FolderSize.setText(String.valueOf(myArrayListFolder.get(position).getNumberOfPics()));
 
         return convertView;
     }

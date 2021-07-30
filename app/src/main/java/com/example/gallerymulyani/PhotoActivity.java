@@ -18,6 +18,7 @@ public class PhotoActivity extends AppCompatActivity {
     ImagesAdapter imagesAdapter;
     String selectedFolder;
 
+    //filteredImages (arraylist yang berisi images per folder (clicked album)
     public ArrayList<ImagesModel> filteredImages = new ArrayList<>();
 
     @Override

@@ -2,6 +2,8 @@ package com.example.gallerymulyani;
 
 import java.util.ArrayList;
 
+//for retrieving and updating value (getter setter)
+//mengambil dan mengupadate nilai
 public class ImagesModel {
 
     private String folderName;
